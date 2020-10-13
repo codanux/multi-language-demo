@@ -1,13 +1,16 @@
-name: FTP Deploy
-  uses: SamKirkland/FTP-Deploy-Action@3.1.1
-  with:
-    # Deployment destination server & path. Formatted as protocol://domain.com:port/full/destination/path/
-    ftp-server: files.000webhost.com
-    # FTP account username
-    ftp-username: laravel-multi-language
-    # FTP account password
-    ftp-password: ${{ secrets.FTP_PASSWORD }}
-    # The local folder to copy, defaults to root project folder
-    local-dir: # optional, default is ./
-    # Passes through options into git-ftp
-    git-ftp-args: # optional
+on: push
+name: Publish Website
+jobs:
+  FTP-Deploy-Action:
+    name: FTP-Deploy-Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2.1.0
+      with:
+        fetch-depth: 2
+    - name: FTP-Deploy-Action
+      uses: SamKirkland/FTP-Deploy-Action@3.1.1
+      with:
+        ftp-server: files.000webhost.com
+        ftp-username: laravel-multi-language
+        ftp-password: ${{ secrets.FTP_PASSWORD }}
