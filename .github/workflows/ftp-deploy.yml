@@ -14,3 +14,4 @@ jobs:
         ftp-server: 94.73.151.111
         ftp-username: u9776480
         ftp-password: ${{ secrets.FTP_PASSWORD }}
+        local-dir: ./laravel-multi-language
