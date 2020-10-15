@@ -20,4 +20,11 @@ Route::group(['localePrefix' => 'admin.prefix'], function () {
     })->name('admin.dashboard');
 
 
+    Route::localeResource('post', \App\Http\Controllers\Admin\Post\PostController::class)
+    ->names('admin.post')
+    ->parents([
+        'admin.post.index' => 'admin.dashboard',
+        'admin.post.show' => 'admin.post.index',
+    ]);
+
 });

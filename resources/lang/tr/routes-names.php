@@ -85,5 +85,13 @@ return [
 
     'admin' => [
         'dashboard' => 'Admin Panel',
+
+        'post' => [
+            'index' => 'Postlar',
+            'create' => 'Yeni Post',
+            'show' => 'Post Detay',
+            'edit' => 'Post Düzenle',
+            'destroy' => 'Post Sil',
+        ],
     ],
 ];

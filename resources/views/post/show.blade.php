@@ -11,10 +11,6 @@
                     <p class="text-gray-700 text-base">
                         {!! $post->body !!}
                     </p>
-
-                    <p class="text-gray-700 text-base">
-                        {!! $post->body !!}
-                    </p>
                 </div>
 
             </div>
