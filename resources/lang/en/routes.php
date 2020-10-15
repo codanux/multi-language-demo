@@ -50,4 +50,14 @@ return [
         'edit' => 'posts/{post}/edit',
         'destroy' => 'posts/{post}/delete',
     ],
+
+    'category' => [
+        'post' => [
+            'index' => 'category/{category}/posts',
+            'create' => 'category/{category}/posts/create',
+            'show' => 'category/{category}/posts/{post}',
+            'edit' => 'category/{category}/posts/{post}/edit',
+            'destroy' => 'category/{category}/posts/{post}/delete',
+        ],
+    ]
 ];

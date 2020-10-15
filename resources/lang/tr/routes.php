@@ -51,4 +51,14 @@ return [
         'edit' => 'post/{post}/duzenle',
         'destroy' => 'post/{post}/sil',
     ],
+
+    'category' => [
+        'post' => [
+            'index' => 'kategori/{category}/posts',
+            'create' => 'kategori/{category}/posts/yeni',
+            'show' => 'kategori/{category}/post/{post}',
+            'edit' => 'kategori/{category}/post/{post}/duzenle',
+            'destroy' => 'kategori/{category}/post/{post}/sil',
+        ],
+    ]
 ];

@@ -37,15 +37,4 @@ return [
         'media_repository' => 'Spatie\MediaLibrary\MediaCollections\MediaRepository',
     ],
 
-    'links' => [
-        'li' => [
-            'active_class' => 'uk-active',
-            'inactive_class' => '',
-            'class' => 'li'
-        ],
-        'a' => [
-            'class' => 'nav-link'
-        ]
-    ],
-
 ];

@@ -1,4 +1,4 @@
-<x-app-layout :translations="['post' => $post]">
+<x-app-layout :translations="['category' => $post->category, 'post' => $post]">
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('routes-names.post.show') }}

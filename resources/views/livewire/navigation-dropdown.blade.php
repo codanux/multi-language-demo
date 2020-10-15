@@ -13,14 +13,15 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ routeLocalized('dashboard') }}" :active="request()->routeIsLocale('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('routes-names.dashboard') }}
                     </x-jet-nav-link>
 
                     <x-jet-nav-link href="{{ routeLocalized('post.index') }}" :active="request()->routeIsLocale('post.index')">
-                        {{ __('Posts') }}
+                        {{ __('routes-names.post.index') }}
                     </x-jet-nav-link>
 
                     <x-locale-links :translations="$translations"></x-locale-links>
+
                 </div>
             </div>
 
