@@ -83,5 +83,9 @@ return [
             'edit' => 'Post Edit',
             'destroy' => 'Post Delete',
         ],
-    ]
+    ],
+
+    'admin' => [
+        'dashboard' => 'Admin Dashboard',
+    ],
 ];

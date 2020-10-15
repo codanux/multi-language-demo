@@ -81,5 +81,9 @@ return [
             'edit' => 'Post Düzenle',
             'destroy' => 'Post Sil',
         ],
-    ]
+    ],
+
+    'admin' => [
+        'dashboard' => 'Admin Panel',
+    ],
 ];
