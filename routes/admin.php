@@ -20,11 +20,23 @@ Route::group(['localePrefix' => 'admin.prefix'], function () {
     })->name('admin.dashboard');
 
 
+    Route::localeResource('category', \App\Http\Controllers\Admin\Post\CategoryController::class)
+        ->names('admin.category')
+        ->parents([
+            'admin.category.index' => 'admin.dashboard',
+            'admin.category.create' => 'admin.category.index',
+            'admin.category.show' => 'admin.category.index',
+            'admin.category.edit' => 'admin.category.index',
+        ]);
+
     Route::localeResource('post', \App\Http\Controllers\Admin\Post\PostController::class)
-    ->names('admin.post')
-    ->parents([
-        'admin.post.index' => 'admin.dashboard',
-        'admin.post.show' => 'admin.post.index',
-    ]);
+        ->names('admin.post')
+        ->localePrefix('category.show')
+        ->parents([
+            'admin.post.index' => 'admin.category.index',
+            'admin.post.create' => 'admin.post.index',
+            'admin.post.show' => 'admin.post.index',
+            'admin.post.edit' => 'admin.post.index',
+        ]);
 
 });

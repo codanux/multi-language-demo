@@ -43,6 +43,14 @@ return [
         'prefix' => 'admin',
     ],
 
+    'category' => [
+        'index' => 'categories',
+        'create' => 'categories/create',
+        'show' => 'category/{category}',
+        'edit' => 'category/{category}/edit',
+        'destroy' => 'category/{category}/delete',
+    ],
+
     'post' => [
         'index' => 'posts',
         'create' => 'posts/create',
@@ -50,14 +58,4 @@ return [
         'edit' => 'posts/{post}/edit',
         'destroy' => 'posts/{post}/delete',
     ],
-
-    'category' => [
-        'post' => [
-            'index' => 'category/{category}/posts',
-            'create' => 'category/{category}/posts/create',
-            'show' => 'category/{category}/posts/{post}',
-            'edit' => 'category/{category}/posts/{post}/edit',
-            'destroy' => 'category/{category}/posts/{post}/delete',
-        ],
-    ]
 ];

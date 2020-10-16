@@ -44,21 +44,19 @@ return [
         'prefix' => 'yonetim',
     ],
 
+    'category' => [
+        'index' => 'kategorileri',
+        'create' => 'kategori/yeni',
+        'show' => 'kategori/{category}',
+        'edit' => 'kategori/{category}/duzenle',
+        'destroy' => 'kategori/{category}/sil',
+    ],
+
     'post' => [
-        'index' => 'posts',
-        'create' => 'posts/yeni',
+        'index' => 'postlar',
+        'create' => 'postlar/yeni',
         'show' => 'post/{post}',
         'edit' => 'post/{post}/duzenle',
         'destroy' => 'post/{post}/sil',
     ],
-
-    'category' => [
-        'post' => [
-            'index' => 'kategori/{category}/posts',
-            'create' => 'kategori/{category}/posts/yeni',
-            'show' => 'kategori/{category}/post/{post}',
-            'edit' => 'kategori/{category}/post/{post}/duzenle',
-            'destroy' => 'kategori/{category}/post/{post}/sil',
-        ],
-    ]
 ];

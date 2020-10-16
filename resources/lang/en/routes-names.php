@@ -67,6 +67,14 @@ return [
 
     ],
 
+    'category' => [
+        'index' => 'Categories',
+        'create' => 'Category Create',
+        'show' => 'Category Detail',
+        'edit' => 'Category Edit',
+        'destroy' => 'Category Delete',
+    ],
+
     'post' => [
         'index' => 'Posts',
         'create' => 'Post Create',
@@ -75,25 +83,8 @@ return [
         'destroy' => 'Post Delete',
     ],
 
-    'category' => [
-        'post' => [
-            'index' => 'Posts',
-            'create' => 'Post Create',
-            'show' => 'Post Detail',
-            'edit' => 'Post Edit',
-            'destroy' => 'Post Delete',
-        ],
-    ],
-
     'admin' => [
         'dashboard' => 'Admin Dashboard',
 
-        'post' => [
-            'index' => 'Posts',
-            'create' => 'Post Create',
-            'show' => 'Post Detail',
-            'edit' => 'Post Edit',
-            'destroy' => 'Post Delete',
-        ],
     ],
 ];

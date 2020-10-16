@@ -65,6 +65,14 @@ return [
         'destroy' => 'Profil Fotoğrafı',
     ],
 
+    'category' => [
+        'index' => 'Kategorileri',
+        'create' => 'Yeni Kategori',
+        'show' => 'Kategori Detay',
+        'edit' => 'Kategori Düzenle',
+        'destroy' => 'Kategori Sil',
+    ],
+
     'post' => [
         'index' => 'Postlar',
         'create' => 'Yeni Post',
@@ -73,25 +81,8 @@ return [
         'destroy' => 'Post Sil',
     ],
 
-    'category' => [
-        'post' => [
-            'index' => 'Postlar',
-            'create' => 'Yeni Post',
-            'show' => 'Post Detay',
-            'edit' => 'Post Düzenle',
-            'destroy' => 'Post Sil',
-        ],
-    ],
-
     'admin' => [
         'dashboard' => 'Admin Panel',
 
-        'post' => [
-            'index' => 'Postlar',
-            'create' => 'Yeni Post',
-            'show' => 'Post Detay',
-            'edit' => 'Post Düzenle',
-            'destroy' => 'Post Sil',
-        ],
     ],
 ];

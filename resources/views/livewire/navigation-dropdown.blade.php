@@ -12,16 +12,11 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ routeLocalized('dashboard') }}" :active="request()->routeIsLocale('dashboard')">
-                        {{ __('routes-names.dashboard') }}
-                    </x-jet-nav-link>
+                    <x-link name="dashboard"></x-link>
 
-                    <x-jet-nav-link href="{{ routeLocalized('post.index') }}" :active="request()->routeIsLocale('post.index')">
-                        {{ __('routes-names.post.index') }}
-                    </x-jet-nav-link>
+                    <x-link name="post.index"></x-link>
 
-                    <x-locale-links :translations="$translations"></x-locale-links>
-
+                    <x-links :translations="$translations"></x-links>
                 </div>
             </div>
 
@@ -52,13 +47,9 @@
                             {{ __('Manage Account') }}
                         </div>
 
-                        <x-jet-dropdown-link href="{{ routeLocalized('profile.show') }}">
-                            {{ __('Profile') }}
-                        </x-jet-dropdown-link>
+                        <x-link component="jet-dropdown-link" name="profile.show"></x-link>
 
-                        <x-jet-dropdown-link href="{{ routeLocalized('admin.dashboard') }}">
-                            {{ __('Admin Dashboard') }}
-                        </x-jet-dropdown-link>
+                        <x-link component="jet-dropdown-link" name="admin.dashboard"></x-link>
 
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                             <x-jet-dropdown-link href="{{ routeLocalized('api-tokens.index') }}">
@@ -75,14 +66,10 @@
                             </div>
 
                             <!-- Team Settings -->
-                            <x-jet-dropdown-link href="{{ routeLocalized('teams.show', Auth::user()->currentTeam->id) }}">
-                                {{ __('Team Settings') }}
-                            </x-jet-dropdown-link>
+                            <x-link component="jet-dropdown-link" name="teams.show" :parameters="auth()->user()->currentTeam"></x-link>
 
                             @can('create', Laravel\Jetstream\Jetstream::newTeamModel())
-                                <x-jet-dropdown-link href="{{ routeLocalized('teams.create') }}">
-                                    {{ __('Create New Team') }}
-                                </x-jet-dropdown-link>
+                                <x-link component="jet-dropdown-link" name="teams.create"></x-link>
                             @endcan
 
                             <div class="border-t border-gray-100"></div>
@@ -128,15 +115,11 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-jet-responsive-nav-link href="{{ routeLocalized('dashboard') }}" :active="request()->routeIsLocale('dashboard')">
-                {{ __('Dashboard') }}
-            </x-jet-responsive-nav-link>
+            <x-link component="jet-responsive-nav-link" name="dashboard"></x-link>
 
-            <x-jet-responsive-nav-link href="{{ routeLocalized('post.index') }}" :active="request()->routeIsLocale('post.index')">
-                {{ __('Posts') }}
-            </x-jet-responsive-nav-link>
+            <x-link component="jet-responsive-nav-link" name="post.index"></x-link>
 
-            <x-locale-links component="jet-responsive-nav-link" :translations="$translations"></x-locale-links>
+            <x-links component="jet-responsive-nav-link" :translations="$translations"></x-links>
         </div>
 
         <!-- Responsive Settings Options -->
@@ -154,14 +137,11 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ routeLocalized('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
-                </x-jet-responsive-nav-link>
+                <x-link component="jet-responsive-nav-link" name="profile.show"></x-link>
+
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
-                    <x-jet-responsive-nav-link href="{{ routeLocalized('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
-                        {{ __('API Tokens') }}
-                    </x-jet-responsive-nav-link>
+                    <x-link component="jet-responsive-nav-link" name="api-tokens.index"></x-link>
                 @endif
 
             <!-- Authentication -->
@@ -184,13 +164,9 @@
                     </div>
 
                     <!-- Team Settings -->
-                    <x-jet-responsive-nav-link href="{{ routeLocalized('teams.show', Auth::user()->currentTeam->id) }}" :active="request()->routeIs('teams.show')">
-                        {{ __('Team Settings') }}
-                    </x-jet-responsive-nav-link>
+                    <x-link component="jet-responsive-nav-link" name="teams.show" :parameters="auth()->user()->currentTeam->id"></x-link>
 
-                    <x-jet-responsive-nav-link href="{{ routeLocalized('teams.create') }}" :active="request()->routeIs('teams.create')">
-                        {{ __('Create New Team') }}
-                    </x-jet-responsive-nav-link>
+                    <x-link component="jet-responsive-nav-link" name="teams.create"></x-link>
 
                     <div class="border-t border-gray-200"></div>
 

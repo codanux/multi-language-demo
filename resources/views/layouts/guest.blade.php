@@ -18,7 +18,7 @@
     </head>
     <body>
         <div class="font-sans text-gray-900 antialiased">
-            <x-locale-links></x-locale-links>
+            <x-links></x-links>
 
             {{ $slot }}
         </div>

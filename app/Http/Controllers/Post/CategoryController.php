@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post\Post;
 use App\Models\Post\PostCategory;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class CategoryController extends Controller
 {
@@ -15,17 +16,17 @@ class CategoryController extends Controller
      * @param PostCategory $category
      * @return void
      */
-    public function index(PostCategory $category)
+    public function index()
     {
-        $posts = $category->posts()->paginate();
+        $categories = (new PostCategory())->newQuery()->locale->paginate();
 
-        return view('category.post.index', compact('category', 'posts'));
+        return view('post.category.index', compact('categories'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -35,8 +36,8 @@ class CategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
@@ -47,19 +48,20 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param PostCategory $category
-     * @param Post $post
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
-    public function show(PostCategory $category, Post $post)
+    public function show(PostCategory $category)
     {
-        return view('category.post.show', compact('category', 'post'));
+        $posts = $category->posts()->paginate();
+
+        return view('post.category.show', compact('category', 'posts'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post\PostCategory  $postCategory
-     * @return \Illuminate\Http\Response
+     * @param PostCategory $postCategory
+     * @return Response
      */
     public function edit(PostCategory $postCategory)
     {
@@ -69,9 +71,9 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post\PostCategory  $postCategory
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param PostCategory $postCategory
+     * @return Response
      */
     public function update(Request $request, PostCategory $postCategory)
     {
@@ -81,8 +83,8 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post\PostCategory  $postCategory
-     * @return \Illuminate\Http\Response
+     * @param PostCategory $postCategory
+     * @return Response
      */
     public function destroy(PostCategory $postCategory)
     {
