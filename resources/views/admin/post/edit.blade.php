@@ -7,7 +7,7 @@
                     <div class="float-right">
                         {!! $post->category->name !!}
                     </div>
-                    <div class="font-bold text-xl mb-2"><a href="{{ routeLocalized('admin.post.show', $post) }}" class="underline text-gray-900 dark:text-white">{!! $post->name !!}</a></div>
+                    <div class="font-bold text-xl mb-2"><a href="{{ routeLocalized('admin.post.show', [$category, $post]) }}" class="underline text-gray-900 dark:text-white">{!! $post->name !!}</a></div>
                     <p class="text-gray-700 text-base">
                         {!! $post->body !!}
                     </p>
