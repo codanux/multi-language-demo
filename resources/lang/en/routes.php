@@ -40,6 +40,7 @@ return [
     ],
 
     'admin' => [
+        'dashboard' => '',
         'prefix' => 'admin',
     ],
 

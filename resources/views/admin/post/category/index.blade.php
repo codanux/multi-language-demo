@@ -9,7 +9,7 @@
                 <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg mb-2">
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2">
-                            <a href="{{ routeLocalized('admin.post.index', $category) }}" class="underline text-gray-900 dark:text-white">
+                            <a href="{{ routeLocalized('admin.category.show', $category) }}" class="underline text-gray-900 dark:text-white">
                                 {!! $category->name !!}
                             </a>
                         </div>
@@ -22,7 +22,7 @@
 
                             @if($trans = $category->translations()->locale($locale)->first())
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                    <a href="{{ routeLocalized('admin.post.index', $trans, $locale) }}"> {!! $trans->name !!}</a>
+                                    <a href="{{ routeLocalized('admin.category.show', $trans, $locale) }}"> {!! $trans->name !!}</a>
                                 </span>
                             @else
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">

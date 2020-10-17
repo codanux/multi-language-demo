@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = (new PostCategory())->newQuery()->locale->paginate();
+        $categories = (new PostCategory())->newQuery()->locale()->paginate();
 
         return view('post.category.index', compact('categories'));
     }
@@ -52,7 +52,7 @@ class CategoryController extends Controller
      */
     public function show(PostCategory $category)
     {
-        $posts = $category->posts()->paginate();
+        $posts = $category->posts()->latest()->limit(5)->paginate();
 
         return view('post.category.show', compact('category', 'posts'));
     }

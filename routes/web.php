@@ -16,7 +16,6 @@ Route::locale('welcome', function () {
     return view('welcome');
 });
 
-
 Route::middleware(['auth:sanctum', 'verified'])->group(function ()
 {
     Route::locale('dashboard', function () {
@@ -31,8 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
         'category.edit' => 'category.index',
     ]);
 
-    Route::localeResource('post', \App\Http\Controllers\Post\PostController::class)->parents([
-        'post.index' => 'dashboard',
+    Route::localeResource('post', \App\Http\Controllers\Post\PostController::class)
+    ->localePrefix('category.show')
+    ->parents([
+        'post.index' => 'category.show',
         'post.create' => 'post.index',
         'post.show' => 'post.index',
         'post.edit' => 'post.index',

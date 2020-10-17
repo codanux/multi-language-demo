@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['localePrefix' => 'admin.prefix'], function () {
 
-    Route::locale('welcome', function () {
+    Route::locale('admin.dashboard', function () {
         return view('admin.dashboard');
-    })->name('admin.dashboard');
+    });
 
 
     Route::localeResource('category', \App\Http\Controllers\Admin\Post\CategoryController::class)
@@ -33,7 +33,7 @@ Route::group(['localePrefix' => 'admin.prefix'], function () {
         ->names('admin.post')
         ->localePrefix('category.show')
         ->parents([
-            'admin.post.index' => 'admin.category.index',
+            'admin.post.index' => 'admin.category.show',
             'admin.post.create' => 'admin.post.index',
             'admin.post.show' => 'admin.post.index',
             'admin.post.edit' => 'admin.post.index',

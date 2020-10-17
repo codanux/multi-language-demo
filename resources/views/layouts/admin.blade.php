@@ -39,7 +39,6 @@
 
                                 <x-link name="admin.category.index"></x-link>
 
-
                                 <x-links :translations="$attributes['translations'] ?? []"></x-links>
 
                             </div>
@@ -163,7 +162,6 @@
                         {{ $header ?? ''}}
                     </div>
                 </div>
-
             </header>
 
             <!-- Page Content -->

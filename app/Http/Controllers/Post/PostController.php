@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post\Post;
+use App\Models\Post\PostCategory;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,11 +14,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(PostCategory $category)
     {
-        $posts = (new Post())->newQuery()->locale()->paginate() ;
+        $posts = $category->posts()->newQuery()->locale()->paginate() ;
 
-        return view('post.index', compact('posts'));
+        return view('post.index', compact('category', 'posts'));
     }
 
     /**
@@ -47,9 +48,9 @@ class PostController extends Controller
      * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(PostCategory $category, Post $post)
     {
-        return view('post.show', compact('post'));
+        return view('post.show', compact('category', 'post'));
     }
 
     /**

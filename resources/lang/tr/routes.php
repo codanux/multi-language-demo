@@ -41,6 +41,7 @@ return [
     ],
 
     'admin' => [
+        'dashboard' => '',
         'prefix' => 'yonetim',
     ],
 

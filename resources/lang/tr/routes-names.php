@@ -68,7 +68,7 @@ return [
     'category' => [
         'index' => 'Kategorileri',
         'create' => 'Yeni Kategori',
-        'show' => 'Kategori Detay',
+        'show' => ':category',
         'edit' => 'Kategori Düzenle',
         'destroy' => 'Kategori Sil',
     ],
@@ -76,13 +76,12 @@ return [
     'post' => [
         'index' => 'Postlar',
         'create' => 'Yeni Post',
-        'show' => 'Post Detay',
+        'show' => ':post',
         'edit' => 'Post Düzenle',
         'destroy' => 'Post Sil',
     ],
 
     'admin' => [
         'dashboard' => 'Admin Panel',
-
     ],
 ];

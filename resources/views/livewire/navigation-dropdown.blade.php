@@ -14,7 +14,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-link name="dashboard"></x-link>
 
-                    <x-link name="post.index"></x-link>
+                    <x-link name="category.index"></x-link>
 
                     <x-links :translations="$translations"></x-links>
                 </div>
@@ -117,7 +117,7 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-link component="jet-responsive-nav-link" name="dashboard"></x-link>
 
-            <x-link component="jet-responsive-nav-link" name="post.index"></x-link>
+            <x-link component="jet-responsive-nav-link" name="category.index"></x-link>
 
             <x-links component="jet-responsive-nav-link" :translations="$translations"></x-links>
         </div>

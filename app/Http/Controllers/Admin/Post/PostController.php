@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post\Post;
 use App\Models\Post\PostCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
@@ -24,22 +25,42 @@ class PostController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(PostCategory $category, Request $request)
     {
-        return view('admin.post.create');
+        session()->now('_old_input', $request->all());
+        return view('admin.post.create', compact('category'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param PostCategory $category
+     * @return void
      */
-    public function store(Request $request)
+    public function store(Request $request, PostCategory $category)
     {
-        //
+        $request->validate([
+            'name' => ['required'],
+            'body' => ['required'],
+            'locale' => [
+                Rule::unique('posts')
+                    ->where('locale', $request->get('locale'))
+                    ->where('translation_of', $request->get('translation_of'))
+            ]
+        ]);
+
+        $post = $category->posts()->create([
+            'name' => $request->get('name'),
+            'body' => $request->get('body'),
+            'locale' => $request->get('locale'),
+            'translation_of' => $request->get('translation_of'),
+        ]);
+
+        return redirect()->routeLocale('admin.post.index', $category, $category->locale);
     }
 
     /**
@@ -48,9 +69,9 @@ class PostController extends Controller
      * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(PostCategory $category, Post $post)
     {
-        return view('admin.post.show', compact('post'));
+        return view('admin.post.show', compact('category', 'post'));
     }
 
     /**
@@ -67,7 +88,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  \App\Models\Post\Post  $post
      * @return \Illuminate\Http\Response
      */

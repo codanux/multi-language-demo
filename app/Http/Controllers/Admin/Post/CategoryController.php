@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post\Post;
 use App\Models\Post\PostCategory;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CategoryController extends Controller
 {
@@ -42,7 +43,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required']
+            'name' => ['required'],
+            'locale' => [
+                Rule::unique('post_categories')
+                    ->where('locale', $request->get('locale'))
+                    ->where('translation_of', $request->get('translation_of'))
+            ]
         ]);
 
         $category = PostCategory::create([
@@ -62,7 +68,9 @@ class CategoryController extends Controller
      */
     public function show(PostCategory $category)
     {
+        $posts = $category->posts()->newQuery()->latest()->limit(5)->paginate();
 
+        return view('admin.post.category.show', compact('category', 'posts'));
     }
 
     /**
@@ -93,7 +101,7 @@ class CategoryController extends Controller
             'name' => $request->get('name'),
         ]);
 
-        return redirect()->routeLocale('admin.category.edit', $category);
+        return redirect()->routeLocale('admin.category.edit', $category, $category->locale);
     }
 
     /**
