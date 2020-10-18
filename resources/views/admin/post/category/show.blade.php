@@ -21,7 +21,7 @@
                         </div>
                         <div class="font-bold text-xl mb-2"><a href="{{ routeLocalized('admin.post.show', [$post->category, $post]) }}" class="underline text-gray-900 dark:text-white">{!! $post->name !!}</a></div>
                         <p class="text-gray-700 text-base">
-                            {!! \Illuminate\Support\Str::limit($post->body, 50) !!}
+                            {!! \Illuminate\Support\Str::limit($post->body, 150) !!}
                         </p>
                     </div>
                     <div class="px-6 pt-4 pb-2">
