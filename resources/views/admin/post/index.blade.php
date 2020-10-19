@@ -19,7 +19,7 @@
                     <div class="px-6 pt-4 pb-2">
                         @foreach(config('multi-language.locales') as $locale)
 
-                            @if($trans = $post->translations()->locale($locale)->first())
+                            @if($trans = $post->translations->firstWhere('locale', $locale))
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                     <a href="{{ routeLocalized('admin.post.show', [$category, $trans], $locale) }}"> {!! $trans->name !!}</a>
                                 </span>

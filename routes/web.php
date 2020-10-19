@@ -19,7 +19,7 @@ Route::locale('welcome', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function ()
 {
     Route::locale('dashboard', function () {
-        $categories = \App\Models\Post\PostCategory::withCount('posts')->locale()->paginate();
+        $categories = \App\Models\Post\PostCategory::with('translations')->withCount('posts')->locale()->paginate();
         return view('dashboard', compact('categories'));
     });
 

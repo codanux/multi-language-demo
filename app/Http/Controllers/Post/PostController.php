@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index(PostCategory $category)
     {
-        $posts = $category->posts()->newQuery()->locale()->paginate() ;
+        $posts = $category->posts()->newQuery()->with('translations')->locale()->paginate() ;
 
         return view('post.index', compact('category', 'posts'));
     }

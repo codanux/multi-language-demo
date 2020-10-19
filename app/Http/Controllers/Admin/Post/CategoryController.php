@@ -18,7 +18,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = (new PostCategory())->newQuery()->locale()->paginate();
+        $categories = (new PostCategory())->newQuery()->with('translations')->locale()->paginate();
 
         return view('admin.post.category.index', compact('categories'));
     }
@@ -68,7 +68,7 @@ class CategoryController extends Controller
      */
     public function show(PostCategory $category)
     {
-        $posts = $category->posts()->newQuery()->latest()->limit(5)->paginate();
+        $posts = $category->posts()->newQuery()->with('translations')->latest()->limit(5)->paginate();
 
         return view('admin.post.category.show', compact('category', 'posts'));
     }
