@@ -13,7 +13,7 @@
             </div>
 
             @foreach($posts as $post)
-                @include('post.card', ['post' => $post])
+                @include('post._card', ['post' => $post])
             @endforeach
             {{ $posts->links() }}
 
