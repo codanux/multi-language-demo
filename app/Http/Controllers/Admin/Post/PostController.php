@@ -7,6 +7,7 @@ use App\Models\Post\Post;
 use App\Models\Post\PostCategory;
 use App\Models\Tag\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
 class PostController extends Controller
@@ -14,7 +15,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index(PostCategory $category)
     {
@@ -27,7 +28,7 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create(PostCategory $category, Request $request)
     {
@@ -58,6 +59,8 @@ class PostController extends Controller
             'translation_of' => ['nullable']
         ]);
 
+        $data['user_id'] = auth()->id();
+
         $post = $category->posts()->create($data);
 
         $post->tags()->sync($request->get('tags', []));
@@ -68,8 +71,8 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return Response
      */
     public function show(PostCategory $category, Post $post)
     {
@@ -79,31 +82,53 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param PostCategory $category
+     * @param Post $post
+     * @return Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request, PostCategory $category, Post $post)
     {
-        return view('admin.post.edit', compact('post'));
+        $data = $post->toArray();
+        $data['tags'] = $post->tags->pluck('id')->toArray();
+        session()->now('_old_input', $data);
+
+        $tags = Tag::locale()->pluck('name', 'id');
+
+        return view('admin.post.edit', compact('post', 'category', 'tags'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param  \App\Models\Post\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, PostCategory $category, Post $post)
     {
-        //
+        $data = $request->validate([
+            'name' => ['required'],
+            'body' => ['required'],
+            'locale' => [
+                Rule::unique('posts')
+                    ->where('locale', $request->get('locale'))
+                    ->where('translation_of', $request->get('translation_of'))
+            ],
+        ]);
+
+        $post->update($data);
+
+        $post->tags()->sync($request->get('tags', []));
+
+        return redirect()->routeLocale('admin.post.index', $category, $category->locale);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post\Post  $post
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return Response
      */
     public function destroy(Post $post)
     {

@@ -6,14 +6,12 @@ use App\Events\Post\PostCreated;
 use App\Events\Post\PostDeleted;
 use App\Events\Post\PostUpdated;
 use App\Models\Tag\Tag;
+use App\Models\User;
 use Codanux\MultiLanguage\Traits\HasLanguage\HasLanguage;
-use Codanux\MultiLanguage\Traits\HasMedia\MediaTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Spatie\MediaLibrary\HasMedia;
-use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Post extends Model // implements HasMedia
+class Post extends Model
 {
     protected $dispatchesEvents = [
         'created' => PostCreated::class,
@@ -22,9 +20,18 @@ class Post extends Model // implements HasMedia
     ];
 
     use HasFactory, HasLanguage;
-    // use InteractsWithMedia, MediaTrait { MediaTrait::getMedia insteadof InteractsWithMedia; }
 
     protected $guarded = [];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
+    }
 
     public function category()
     {
@@ -34,12 +41,6 @@ class Post extends Model // implements HasMedia
             'translation_of'
         )->locale($this->locale);
     }
-
-    public function tags()
-    {
-        return $this->morphToMany(Tag::class, 'taggable');
-    }
-
     public function getLabel()
     {
         return $this->name;
