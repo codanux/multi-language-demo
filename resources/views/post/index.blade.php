@@ -10,10 +10,10 @@
                         </p>
                     </div>
                     <div class="px-6 pt-4 pb-2">
-                        @foreach($post->translations as $trans)
+                        @foreach($post->tags as $tag)
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-                                <a href="{{ routeLocalized('post.show', [$trans->category, $trans], $trans->locale) }}"> {!! $trans->name !!}</a>
-                            </span>
+                            {!! $tag->name !!}
+                        </span>
                         @endforeach
                     </div>
                 </div>
