@@ -18,7 +18,7 @@
                         </p>
                     </div>
                     <div class="px-6 pt-4 pb-2">
-                        @foreach(config('multi-language.locales') as $locale)
+                        @foreach(config('multi-language.locales') as $locale => $localLabel)
 
                             @if($trans = $category->translations->firstWhere('locale', $locale))
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
@@ -27,7 +27,7 @@
                             @else
                                 <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                     <a href="{{ routeLocalized('admin.category.store', ['translation_of' => $category->translation_of, 'locale' => $locale], $locale) }}">
-                                        {{ $locale }} Add
+                                        {{ $localLabel }} Add
                                     </a>
                                 </span>
                             @endif
