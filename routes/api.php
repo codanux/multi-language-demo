@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('auth/login', [\App\Http\Controllers\Api\ApiController::class, 'login']);
+Route::post('auth/refresh', [\App\Http\Controllers\Api\ApiController::class, 'refresh']);
+
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/user', function (Request $request) {
-        return $request->user();
-    });
+    Route::post('auth/logout',  [\App\Http\Controllers\Api\ApiController::class, 'logout']);
+    Route::get('auth/user',  [\App\Http\Controllers\Api\ApiController::class, 'user']);
+
+    Route::apiResource('categories', \App\Http\Controllers\Api\Post\PostCategoryController::class);
+    Route::apiResource('posts', \App\Http\Controllers\Api\Post\PostController::class);
 
 });

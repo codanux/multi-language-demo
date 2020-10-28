@@ -77,8 +77,24 @@ return [
         'index' => 'Postlar',
         'create' => 'Yeni Post',
         'show' => ':post',
-        'edit' => 'Post Düzenle',
-        'destroy' => 'Post Sil',
+        'edit' => ':post Düzenle',
+        'destroy' => ':post Sil',
+    ],
+
+    'tag' => [
+        'index' => 'Taglar',
+        'create' => 'Yeni Tag',
+        'show' => ':tag',
+        'edit' => ':tag Düzenle',
+        'destroy' => ':tag Sil',
+    ],
+
+    'newsletter' => [
+        'index' => 'Abonelik',
+        'create' => 'Yeni Abonelik',
+        'show' => ':newsletter',
+        'edit' => ':newsletter Düzenle',
+        'destroy' => ':newsletter Sil',
     ],
 
     'admin' => [

@@ -18,6 +18,17 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        "App\Events\Post\PostCreated" => [
+            'App\Listeners\Post\NewPostNewsletterMail',
+
+        ],
+        "App\Events\Post\PostUpdated" => [
+
+        ],
+        "App\Events\Post\PostDeleted" => [
+
+        ]
+
     ];
 
     /**

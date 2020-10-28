@@ -71,16 +71,32 @@ return [
         'index' => 'Categories',
         'create' => 'Category Create',
         'show' => ':category',
-        'edit' => 'Category Edit',
-        'destroy' => 'Category Delete',
+        'edit' => ':category Edit',
+        'destroy' => ':category Delete',
     ],
 
     'post' => [
         'index' => 'Posts',
         'create' => 'Post Create',
         'show' => ':post',
-        'edit' => 'Post Edit',
-        'destroy' => 'Post Delete',
+        'edit' => ':post Edit',
+        'destroy' => ':post Delete',
+    ],
+
+    'tag' => [
+        'index' => 'Tags',
+        'create' => 'Tags Create',
+        'show' => ':tag',
+        'edit' => ':tag Edit',
+        'destroy' => ':tag Delete',
+    ],
+
+    'newsletter' => [
+        'index' => 'Newsletters',
+        'create' => 'Newsletter Create',
+        'show' => ':newsletter',
+        'edit' => ':newsletter Edit',
+        'destroy' => ':newsletter Delete',
     ],
 
     'admin' => [

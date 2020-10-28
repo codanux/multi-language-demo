@@ -39,6 +39,8 @@
 
                                 <x-link name="admin.category.index"></x-link>
 
+                                <x-link name="admin.tag.index"></x-link>
+
                                 <x-links :translations="$attributes['translations'] ?? []"></x-links>
 
                             </div>

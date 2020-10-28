@@ -16,6 +16,12 @@ Route::locale('welcome', function () {
     return view('welcome');
 });
 
+Route::localeResource('newsletter', \App\Http\Controllers\Newsletter\NewsletterController::class)
+    ->parents([
+        'newsletter.index' => 'dashboard',
+        'newsletter.create' => 'newsletter.index',
+    ])->only(['index', 'create', 'store']);
+
 Route::middleware(['auth:sanctum', 'verified'])->group(function ()
 {
     Route::locale('dashboard', function () {
@@ -31,13 +37,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function ()
     ]);
 
     Route::localeResource('post', \App\Http\Controllers\Post\PostController::class)
-    ->localePrefix('category.show')
-    ->parents([
-        'post.index' => 'category.show',
-        'post.create' => 'post.index',
-        'post.show' => 'post.index',
-        'post.edit' => 'post.index',
-    ]);
-
+        ->localePrefix('category.show')
+        ->parents([
+            'post.index' => 'category.show',
+            'post.create' => 'post.index',
+            'post.show' => 'post.index',
+            'post.edit' => 'post.index',
+        ]);
 
 });

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Post;
+namespace App\Models\Tag;
 
-use App\Models\Tag\Tag;
+use App\Models\Post\Post;
 use Codanux\MultiLanguage\Traits\HasLanguage\HasLanguage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PostCategory extends Model
+class Tag extends Model
 {
     use HasFactory, HasLanguage;
 
@@ -15,17 +15,14 @@ class PostCategory extends Model
 
     public function posts()
     {
-        return $this->hasMany(
-            Post::class,
-            'category_translation_of',
-            'translation_of'
-        )->locale($this->locale);
+        return $this->morphedByMany(Post::class, 'taggable');
     }
 
-    public function tags()
+    public function postCategories()
     {
-        return $this->morphToMany(Tag::class, 'taggable');
+        return $this->morphedByMany(Post::class, 'taggable');
     }
+
 
     public function getLabel()
     {

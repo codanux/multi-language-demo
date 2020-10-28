@@ -21,7 +21,7 @@
                                 <div class="flex">
                                 @foreach(config('multi-language.locales') as $key => $locale)
                                     <div class="mr-4">
-                                        <input type="radio" class="form-radio" id="locale_{{ $key }}" name="locale" value="{{ $locale }}" @if(old('locale') == $locale){{ 'checked' }}@endif>
+                                        <input type="radio" class="form-radio" id="locale_{{ $key }}" name="locale" value="{{ $key }}" @if(old('locale') == $key){{ 'checked' }}@endif>
                                         <label class="font-medium text-sm text-gray-700" for="locale_{{ $key }}">{{ $locale }}</label>
                                     </div>
                                 @endforeach

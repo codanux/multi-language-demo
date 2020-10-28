@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Post;
 use App\Http\Controllers\Controller;
 use App\Models\Post\Post;
 use App\Models\Post\PostCategory;
+use App\Models\Tag\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -17,7 +18,7 @@ class PostController extends Controller
      */
     public function index(PostCategory $category)
     {
-        $posts = $category->posts()->with('translations')->locale()->paginate();
+        $posts = $category->posts()->with('translations')->locale()->latest()->paginate();
 
         return view('admin.post.index', compact('category', 'posts'));
     }
@@ -30,8 +31,11 @@ class PostController extends Controller
      */
     public function create(PostCategory $category, Request $request)
     {
+        $tags = Tag::locale()->pluck('name', 'id');
+
         session()->now('_old_input', $request->all());
-        return view('admin.post.create', compact('category'));
+
+        return view('admin.post.create', compact('category', 'tags'));
     }
 
     /**
@@ -43,22 +47,20 @@ class PostController extends Controller
      */
     public function store(Request $request, PostCategory $category)
     {
-        $request->validate([
+        $data = $request->validate([
             'name' => ['required'],
             'body' => ['required'],
             'locale' => [
                 Rule::unique('posts')
                     ->where('locale', $request->get('locale'))
                     ->where('translation_of', $request->get('translation_of'))
-            ]
+            ],
+            'translation_of' => ['nullable']
         ]);
 
-        $post = $category->posts()->create([
-            'name' => $request->get('name'),
-            'body' => $request->get('body'),
-            'locale' => $request->get('locale'),
-            'translation_of' => $request->get('translation_of'),
-        ]);
+        $post = $category->posts()->create($data);
+
+        $post->tags()->sync($request->get('tags', []));
 
         return redirect()->routeLocale('admin.post.index', $category, $category->locale);
     }

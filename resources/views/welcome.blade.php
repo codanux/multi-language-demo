@@ -25,16 +25,17 @@
             @if (Route::hasLocale('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                     <x-links></x-links>
-
                     @auth
-                        <a href="{{ routeLocalized('dashboard') }}" class="text-sm text-gray-700 underline">Dashboard</a>
+                        <a href="{{ routeLocalized('dashboard') }}" class="ml-4 text-sm text-gray-700 underline">Dashboard</a>
                     @else
-                        <a href="{{ routeLocalized('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                        <a href="{{ routeLocalized('login') }}" class="ml-4 text-sm text-gray-700 underline">Login</a>
 
                         @if (Route::hasLocale('register'))
                             <a href="{{ routeLocalized('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
                         @endif
                     @endif
+
+                    <a href="{{ routeLocalized('newsletter.create') }}" class="ml-4 text-sm text-gray-700 underline">Abonelik</a>
                 </div>
             @endif
 

@@ -59,4 +59,20 @@ return [
         'edit' => 'posts/{post}/edit',
         'destroy' => 'posts/{post}/delete',
     ],
+
+    'tag' => [
+        'index' => 'tags',
+        'create' => 'tags/create',
+        'show' => 'tags/{tag}',
+        'edit' => 'tags/{tag}/edit',
+        'destroy' => 'tags/{tag}/delete',
+    ],
+
+    'newsletter' => [
+        'index' => 'newsletters',
+        'create' => 'newsletters/create',
+        'show' => 'newsletters/{newsletter}',
+        'edit' => 'newsletters/{newsletter}/edit',
+        'destroy' => 'newsletters/{newsletter}/delete',
+    ],
 ];

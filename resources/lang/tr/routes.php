@@ -60,4 +60,20 @@ return [
         'edit' => 'post/{post}/duzenle',
         'destroy' => 'post/{post}/sil',
     ],
+
+    'tag' => [
+        'index' => 'taglar',
+        'create' => 'taglar/yeni',
+        'show' => 'taglar/{tag}',
+        'edit' => 'taglar/{tag}/duzenle',
+        'destroy' => 'taglar/{tag}/sil',
+    ],
+
+    'newsletter' => [
+        'index' => 'abonelik',
+        'create' => 'abonelik/yeni',
+        'show' => 'abonelik/{newsletter}',
+        'edit' => 'abonelik/{newsletter}/duzenle',
+        'destroy' => 'abonelik/{newsletter}/sil',
+    ],
 ];

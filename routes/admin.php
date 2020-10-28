@@ -19,6 +19,15 @@ Route::group(['localePrefix' => 'admin.prefix'], function () {
         return view('admin.dashboard');
     });
 
+    Route::localeResource('tag', \App\Http\Controllers\Admin\Tag\TagController::class)
+        ->names('admin.tag')
+        ->parents([
+            'admin.tag.index' => 'admin.dashboard',
+            'admin.tag.create' => 'admin.tag.index',
+            'admin.tag.show' => 'admin.tag.index',
+            'admin.tag.edit' => 'admin.tag.index',
+        ]);
+
 
     Route::localeResource('category', \App\Http\Controllers\Admin\Post\CategoryController::class)
         ->names('admin.category')
