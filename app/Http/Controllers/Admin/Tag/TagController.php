@@ -44,6 +44,7 @@ class TagController extends Controller
         $data = $request->validate([
             'name' => ['required'],
             'locale' => ['required'],
+            'translation_of' => ['required'],
         ]);
 
         $tag = Tag::create($data);
