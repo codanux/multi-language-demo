@@ -47,18 +47,18 @@ class PostCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Post\PostCategory  $category
+     * @param PostCategory $category
      * @return Response
      */
     public function show(PostCategory $category)
     {
-        //
+        return (new JsonResource($category));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Post\PostCategory  $category
+     * @param PostCategory $category
      * @return Response
      */
     public function edit(PostCategory $category)
@@ -70,7 +70,7 @@ class PostCategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Post\PostCategory  $category
+     * @param PostCategory $category
      * @return Response
      */
     public function update(Request $request, PostCategory $category)
@@ -81,7 +81,7 @@ class PostCategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post\PostCategory  $category
+     * @param PostCategory $category
      * @return Response
      */
     public function destroy(PostCategory $category)
