@@ -50,6 +50,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => ['required'],
             'locale' => [
+                'required',
                 Rule::unique('post_categories')
                     ->where('locale', $request->get('locale'))
                     ->where('translation_of', $request->get('translation_of'))
@@ -106,6 +107,7 @@ class CategoryController extends Controller
         $data = $request->validate([
             'name' => ['required'],
             'locale' => [
+                'required',
                 Rule::unique('post_categories')
                     ->where('locale', $request->get('locale'))
                     ->where('translation_of', $request->get('translation_of'))

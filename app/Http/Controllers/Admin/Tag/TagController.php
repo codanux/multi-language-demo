@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Tag\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Validation\Rule;
 
 class TagController extends Controller
 {
@@ -43,8 +44,13 @@ class TagController extends Controller
     {
         $data = $request->validate([
             'name' => ['required'],
-            'locale' => ['required'],
-            'translation_of' => ['required'],
+            'locale' => [
+                'required',
+                Rule::unique('tags')
+                    ->where('locale', $request->get('locale'))
+                    ->where('translation_of', $request->get('translation_of'))
+            ],
+            'translation_of' => ['nullable']
         ]);
 
         $tag = Tag::create($data);
@@ -87,7 +93,13 @@ class TagController extends Controller
     {
         $data = $request->validate([
             'name' => ['required'],
-            'locale' => ['required'],
+            'locale' => [
+                'required',
+                Rule::unique('tags')
+                    ->where('locale', $request->get('locale'))
+                    ->where('translation_of', $request->get('translation_of'))
+                    ->ignore($tag)
+            ],
         ]);
 
         $tag->update($data);

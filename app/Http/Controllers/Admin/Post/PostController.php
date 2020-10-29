@@ -52,6 +52,7 @@ class PostController extends Controller
             'name' => ['required'],
             'body' => ['required'],
             'locale' => [
+                'required',
                 Rule::unique('posts')
                     ->where('locale', $request->get('locale'))
                     ->where('translation_of', $request->get('translation_of'))
@@ -111,6 +112,7 @@ class PostController extends Controller
             'name' => ['required'],
             'body' => ['required'],
             'locale' => [
+                'required',
                 Rule::unique('posts')
                     ->where('locale', $request->get('locale'))
                     ->where('translation_of', $request->get('translation_of'))
