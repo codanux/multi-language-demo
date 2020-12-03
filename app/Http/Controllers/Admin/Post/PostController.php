@@ -115,7 +115,8 @@ class PostController extends Controller
                 'required',
                 Rule::unique('posts')
                     ->where('locale', $request->get('locale'))
-                    ->where('translation_of', $request->get('translation_of'))
+                    ->where('translation_of', $post->translation_of)
+                    ->ignore($post)
             ],
         ]);
 

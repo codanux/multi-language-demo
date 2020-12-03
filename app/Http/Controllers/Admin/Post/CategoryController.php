@@ -110,7 +110,7 @@ class CategoryController extends Controller
                 'required',
                 Rule::unique('post_categories')
                     ->where('locale', $request->get('locale'))
-                    ->where('translation_of', $request->get('translation_of'))
+                    ->where('translation_of', $category->translation_of)
                     ->ignore($category)
             ],
         ]);
